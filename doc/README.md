@@ -8,7 +8,8 @@
 
 | 文档 | 说明 | 适用场景 |
 |------|------|----------|
-| [Claude Code + Spec 开发指导手册](./claude-code-guide.md) | AI 辅助开发的完整指南 | 使用 Claude/Cursor 进行开发 |
+| [Claude Code + Spec 开发指导手册](./claude-code-guide.md) | AI 辅助开发的完整指南 | 使用 Claude Code 进行开发 |
+| [Cursor + Spec-Kit 开发指导手册](./cursor-speckit-guide.md) | Cursor 编辑器 + Spec-Kit 斜杠命令指南 | 使用 Cursor 编辑器开发 |
 
 ---
 
