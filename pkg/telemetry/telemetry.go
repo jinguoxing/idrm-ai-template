@@ -3,9 +3,9 @@ package telemetry
 import (
 	"context"
 
-	"idrm/pkg/telemetry/audit"
-	"idrm/pkg/telemetry/log"
-	"idrm/pkg/telemetry/trace"
+	"github.com/idrm/template/pkg/telemetry/audit"
+	"github.com/idrm/template/pkg/telemetry/log"
+	"github.com/idrm/template/pkg/telemetry/trace"
 
 	"github.com/zeromicro/go-zero/core/logx"
 )

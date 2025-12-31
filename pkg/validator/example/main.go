@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"idrm/pkg/validator"
+
+	"github.com/idrm/template/pkg/validator"
 )
 
 // 示例结构体

@@ -1,4 +1,4 @@
-module idrm-ai-template
+module github.com/idrm/template
 
 go 1.21
 

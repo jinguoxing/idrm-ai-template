@@ -4,12 +4,12 @@ import (
 	"flag"
 	"fmt"
 
-	"idrm/api/internal/config"
-	"idrm/api/internal/handler"
-	"idrm/api/internal/svc"
-	"idrm/pkg/middleware"
-	"idrm/pkg/telemetry"
-	"idrm/pkg/validator"
+	"github.com/idrm/template/api/internal/config"
+	"github.com/idrm/template/api/internal/handler"
+	"github.com/idrm/template/api/internal/svc"
+	"github.com/idrm/template/pkg/middleware"
+	"github.com/idrm/template/pkg/telemetry"
+	"github.com/idrm/template/pkg/validator"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/rest"

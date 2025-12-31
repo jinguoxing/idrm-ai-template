@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	"idrm/pkg/errorx"
-	"idrm/pkg/response"
-	"idrm/pkg/validator"
 	"net/http/httptest"
+
+	"github.com/idrm/template/pkg/errorx"
+	"github.com/idrm/template/pkg/response"
+	"github.com/idrm/template/pkg/validator"
 )
 
 type CreateUserRequest struct {

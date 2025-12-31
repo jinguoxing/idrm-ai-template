@@ -3,7 +3,7 @@ package middleware
 import (
 	"net/http"
 
-	"idrm/pkg/telemetry/trace"
+	"github.com/idrm/template/pkg/telemetry/trace"
 
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/codes"

@@ -4,9 +4,9 @@ import (
 	"database/sql"
 	"fmt"
 
-	"idrm/api/internal/config"
-	"idrm/model/resource_catalog/category"
-	"idrm/pkg/db"
+	"github.com/idrm/template/api/internal/config"
+	"github.com/idrm/template/model/resource_catalog/category"
+	"github.com/idrm/template/pkg/db"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/zeromicro/go-zero/core/logx"
