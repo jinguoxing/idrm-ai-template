@@ -40,7 +40,7 @@
 
 **goctl 命令**:
 ```bash
-goctl api go -api api/doc/{module}/{feature}.api -dir api/ --style=go_zero
+goctl api go -api api/doc/{module}/{feature}.api -dir api/ --style=go_zero --type-group
 ```
 
 ---

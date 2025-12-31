@@ -23,8 +23,8 @@
 git clone https://github.com/jinguoxing/idrm-ai-template.git my-project
 cd my-project
 
-# 初始化项目（替换项目名称）
-./scripts/init.sh my-project github.com/myorg/my-project
+# 初始化项目（替换模块路径）
+./scripts/init.sh github.com/myorg/my-project
 ```
 
 ### 2. 生成 API 代码
