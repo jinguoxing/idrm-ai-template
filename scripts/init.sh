@@ -41,17 +41,21 @@ echo -e "模块路径: ${YELLOW}$NEW_MODULE${NC}"
 echo -e "项目名称: ${YELLOW}$NEW_PROJECT${NC}"
 echo -e "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-# 检测操作系统，选择正确的 sed 语法
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    SED_INPLACE="sed -i ''"
-else
-    SED_INPLACE="sed -i"
-fi
+# 检测操作系统，定义正确的 sed inplace 替换函数
+# 注意：macOS 的 sed -i 需要空字符串参数，但通过变量传递会导致问题
+# 因此使用函数来正确处理
+sed_inplace() {
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        sed -i '' "$@"
+    else
+        sed -i "$@"
+    fi
+}
 
 # 1. 替换 go.mod 中的模块路径
 echo -e "\n${GREEN}[1/5] 更新 go.mod...${NC}"
 if [ -f "go.mod" ]; then
-    $SED_INPLACE "s|module $OLD_MODULE|module $NEW_MODULE|g" go.mod
+    sed_inplace "s|module $OLD_MODULE|module $NEW_MODULE|g" go.mod
     echo -e "  ✅ go.mod 模块路径已更新"
 else
     echo -e "  ${YELLOW}⚠️ go.mod 不存在，创建新文件...${NC}"
@@ -78,7 +82,7 @@ GO_FILES=$(find . -name "*.go" -type f 2>/dev/null | wc -l | tr -d ' ')
 if [ "$GO_FILES" -gt 0 ]; then
     find . -name "*.go" -type f | while read file; do
         if grep -q "$OLD_MODULE" "$file" 2>/dev/null; then
-            $SED_INPLACE "s|\"$OLD_MODULE/|\"$NEW_MODULE/|g" "$file"
+            sed_inplace "s|\"$OLD_MODULE/|\"$NEW_MODULE/|g" "$file"
         fi
     done
     echo -e "  ✅ 已扫描 $GO_FILES 个 Go 文件，import 路径已更新"
@@ -89,14 +93,14 @@ fi
 # 3. 更新配置文件中的项目名
 echo -e "\n${GREEN}[3/5] 更新配置文件...${NC}"
 if [ -f "api/etc/api.yaml" ]; then
-    $SED_INPLACE "s|Name: .*|Name: $NEW_PROJECT|g" api/etc/api.yaml
+    sed_inplace "s|Name: .*|Name: $NEW_PROJECT|g" api/etc/api.yaml
     echo -e "  ✅ api/etc/api.yaml 已更新"
 fi
 
 # 4. 更新 Makefile 中的项目名
 echo -e "\n${GREEN}[4/5] 更新 Makefile...${NC}"
 if [ -f "Makefile" ]; then
-    $SED_INPLACE "s|PROJECT_NAME := .*|PROJECT_NAME := $NEW_PROJECT|g" Makefile
+    sed_inplace "s|PROJECT_NAME := .*|PROJECT_NAME := $NEW_PROJECT|g" Makefile
     echo -e "  ✅ Makefile 已更新"
 else
     echo -e "  ${YELLOW}⚠️ Makefile 不存在，跳过${NC}"

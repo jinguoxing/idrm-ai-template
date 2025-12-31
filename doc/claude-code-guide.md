@@ -90,6 +90,78 @@ npm install -g @anthropic-ai/claude-cli
 claude config set api_key YOUR_API_KEY
 ```
 
+### 4. Spec-Kit 集成 (推荐)
+
+本项目兼容 [GitHub Spec-Kit](https://github.com/github/spec-kit)，可使用其斜杠命令简化工作流。
+
+#### 安装 Specify CLI
+
+```bash
+# 方式 1: 持久安装 (推荐)
+uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
+
+# 方式 2: 一次性使用
+uvx --from git+https://github.com/github/spec-kit.git specify init <PROJECT_NAME>
+```
+
+#### 初始化项目
+
+```bash
+# 在现有项目中初始化 (使用 Claude Code)
+specify init . --ai claude
+
+# 或使用 Cursor
+specify init . --ai cursor-agent
+
+# 检查系统环境
+specify check
+```
+
+#### Spec-Kit 斜杠命令
+
+初始化后，在 Claude Code 中可使用以下命令：
+
+| 命令 | 说明 | 对应阶段 |
+|------|------|----------|
+| `/speckit.constitution` | 创建项目原则和开发准则 | Phase 0 增强 |
+| `/speckit.specify` | 描述需要构建的功能 (What & Why) | Phase 1 |
+| `/speckit.plan` | 生成技术实现计划 | Phase 2 |
+| `/speckit.tasks` | 拆分为可执行任务列表 | Phase 3 |
+| `/speckit.implement` | 执行任务并构建功能 | Phase 4 |
+| `/speckit.clarify` | 澄清规格中的模糊点 | 可选 |
+| `/speckit.checklist` | 生成验证清单 | 可选 |
+
+#### 使用示例
+
+```bash
+# 1. 创建项目原则
+/speckit.constitution Create principles focused on code quality, testing standards, and Go-Zero best practices
+
+# 2. 描述功能需求
+/speckit.specify Build a user authentication system with phone number registration and JWT login
+
+# 3. 生成技术计划
+/speckit.plan Use Go-Zero framework with MySQL, follow layered architecture (Handler → Logic → Model)
+
+# 4. 生成任务列表
+/speckit.tasks
+
+# 5. 执行实现
+/speckit.implement
+```
+
+#### Spec-Kit vs IDRM 5 阶段对照
+
+| Spec-Kit 命令 | IDRM Phase | 输出物 |
+|---------------|------------|--------|
+| `/speckit.constitution` | Phase 0: Context | `.specify/memory/constitution.md` |
+| `/speckit.specify` | Phase 1: Specify | `spec.md` |
+| `/speckit.plan` | Phase 2: Design | `plan.md` |
+| `/speckit.tasks` | Phase 3: Tasks | `tasks.md` |
+| `/speckit.implement` | Phase 4: Implement | 代码实现 |
+
+> **提示**: Spec-Kit 命令与 IDRM 5 阶段工作流完全一致，可混合使用。已有的模板文件（`.specify/templates/`）可与 Spec-Kit 斜杠命令配合使用。
+
 ---
 
 ## 核心理念
