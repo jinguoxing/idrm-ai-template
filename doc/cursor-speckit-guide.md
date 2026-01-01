@@ -66,6 +66,7 @@ uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
 cd my-project
 ls -la .specify/
 ls -la .github/prompts/
+ls -la .cursor/commands/
 
 # .specify/ 应包含：
 # ├── memory/
@@ -77,20 +78,40 @@ ls -la .github/prompts/
 #     ├── api-template.api         # API 模板
 #     └── schema-template.sql      # 数据库模板
 
-# .github/prompts/ 应包含（斜杠命令定义）：
+# .github/prompts/ 应包含（GitHub Copilot/Claude Code 用）：
 # ├── constitution.prompt.md
 # ├── specify.prompt.md
 # ├── plan.prompt.md
 # ├── tasks.prompt.md
 # ├── implement.prompt.md
 # └── clarify.prompt.md
+
+# .cursor/commands/ 应包含（Cursor 斜杠命令）：
+# ├── speckit-constitution.md
+# ├── speckit-specify.md
+# ├── speckit-plan.md
+# ├── speckit-tasks.md
+# ├── speckit-implement.md
+# └── speckit-clarify.md
 ```
 
-> ✅ **好消息**：模板已包含 `.github/prompts/` 目录，**斜杠命令可直接使用**！
+> ✅ **好消息**：模板已包含完整配置，**斜杠命令可直接使用**！
 >
-> - 无需运行 `specify init`
-> - 在 Cursor 中可直接使用 `/speckit.*` 命令
-> - 所有配置已预配置好
+> - `.cursor/commands/` - Cursor 斜杠命令定义
+> - `.github/prompts/` - GitHub Copilot/Claude Code 命令定义
+> - `.specify/` - Spec-Kit 模板和配置
+>
+> 无需运行 `specify init`，所有配置已预置！
+
+**在 Cursor 中使用斜杠命令**：
+
+在 Cursor Chat 中输入 `/` 即可看到可用命令:
+- `/speckit-constitution` - 创建项目原则
+- `/speckit-specify` - 定义需求规范
+- `/speckit-plan` - 生成技术设计
+- `/speckit-tasks` - 拆分任务列表
+- `/speckit-implement` - 执行代码实现
+- `/speckit-clarify` - 澄清模糊点
 
 **可选：安装 Specify CLI 工具（用于命令行操作）**
 
