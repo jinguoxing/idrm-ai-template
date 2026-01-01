@@ -25,6 +25,13 @@
 
 ## 🚀 快速开始
 
+> **💡 提示**：根据你的情况选择合适的方式
+> - **新项目**：直接使用模板创建 → 见下方步骤
+> - **现有项目**：选择性引入模板功能 → 见 [入门指南](doc/getting-started.md#场景-b现有项目引入模板)
+> - **仅用规范**：只使用开发规范和 AI 辅助 → 见 [入门指南](doc/getting-started.md#场景-c仅使用规范文档)
+>
+> 详细说明：[模板使用指南 →](doc/getting-started.md)
+
 ### 1. 使用模板
 
 ```bash
@@ -328,6 +335,7 @@ helm upgrade idrm ./deploy/helm/idrm --set global.image.tag=v1.0.1
 
 | 文档 | 说明 |
 |------|------|
+| [模板使用指南](doc/getting-started.md) | 新项目/现有项目的使用方式 |
 | [分层架构](sdd_doc/spec/architecture/layered-architecture.md) | Handler/Logic/Model 架构规范 |
 | [API 服务指南](sdd_doc/spec/architecture/api-service-guide.md) | API 服务开发指南 |
 | [命名规范](sdd_doc/spec/coding-standards/naming-conventions.md) | Go 代码命名规范 |
