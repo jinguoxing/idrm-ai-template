@@ -55,15 +55,37 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
 ```
 
-### 3. 初始化项目
+### 3. 验证项目配置
+
+本模板已预配置 Spec-Kit，**无需重新初始化**！
 
 ```bash
-# 克隆模板
-git clone https://github.com/jinguoxing/idrm-ai-template.git my-project
+# 克隆或使用模板后，检查是否已包含配置
 cd my-project
+ls -la .specify/
 
-# 初始化 Spec-Kit (使用 Cursor Agent)
-specify init . --ai cursor-agent
+# 应该看到：
+# .specify/
+# ├── memory/
+# │   └── constitution.md         # 项目原则
+# └── templates/
+#     ├── requirements-template.md # 需求模板
+#     ├── design-template.md       # 设计模板
+#     ├── tasks-template-v3.md     # 任务模板
+#     ├── api-template.api         # API 模板
+#     └── schema-template.sql      # 数据库模板
+```
+
+> ⚠️ **重要提示**：
+> - 模板已包含完整的 `.specify/` 配置，**不要运行** `specify init`，会覆盖现有配置！
+> - 如果确实需要重新初始化（例如切换 AI），请先备份 `.specify/` 目录
+> - `specify check` 可以验证配置是否正确，这个命令是安全的
+
+**可选：安装 Spec-Kit CLI（仅当你想使用斜杠命令）**
+
+```bash
+# 安装 Specify CLI 工具（可选）
+uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
 
 # 验证安装
 specify check

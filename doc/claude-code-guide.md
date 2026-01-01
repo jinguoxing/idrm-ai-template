@@ -94,28 +94,31 @@ claude config set api_key YOUR_API_KEY
 
 本项目兼容 [GitHub Spec-Kit](https://github.com/github/spec-kit)，可使用其斜杠命令简化工作流。
 
-#### 安装 Specify CLI
+> **重要**：模板已包含完整的 `.specify/` 配置，无需重新初始化！
+
+#### 安装 Specify CLI（可选）
+
+仅当你想使用 `/speckit.*` 斜杠命令时才需要安装：
 
 ```bash
 # 方式 1: 持久安装 (推荐)
 uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
 
 # 方式 2: 一次性使用
-uvx --from git+https://github.com/github/spec-kit.git specify init <PROJECT_NAME>
+uvx --from git+https://github.com/github/spec-kit.git specify check
 ```
 
-#### 初始化项目
+#### 验证配置
 
 ```bash
-# 在现有项目中初始化 (使用 Claude Code)
-specify init . --ai claude
-
-# 或使用 Cursor
-specify init . --ai cursor-agent
-
-# 检查系统环境
+# 检查配置（不会修改文件）
 specify check
+
+# 查看模板是否已包含
+ls -la .specify/
 ```
+
+> ⚠️ **警告**：不要运行 `specify init`，会覆盖模板的 `.specify/` 配置！
 
 #### Spec-Kit 斜杠命令
 
