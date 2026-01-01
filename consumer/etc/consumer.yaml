@@ -1,0 +1,41 @@
+Name: consumer
+Mode: console
+
+# 日志配置
+Log:
+  ServiceName: consumer
+  Mode: console
+  Level: info
+
+# 链路追踪
+Telemetry:
+  Name: consumer
+  Endpoint: ""
+  Sampler: 1.0
+  Batcher: jaeger
+
+# 消息队列配置
+MQ:
+  # 类型：kafka, tonglink, redis
+  Type: kafka
+  
+  # Kafka 配置
+  Kafka:
+    Brokers:
+      - ${KAFKA_BROKERS:localhost:9092}
+    Topic: ${KAFKA_TOPIC:orders}
+    Group: ${KAFKA_GROUP:consumer-group}
+  
+  # TongLINK/Q-CN 配置 (示例)
+  # TongLink:
+  #   Host: ${TONGLINK_HOST:localhost}
+  #   Port: ${TONGLINK_PORT:8080}
+  #   Queue: ${TONGLINK_QUEUE:orders}
+
+# 数据库配置 (示例)
+# DB:
+#   Host: ${DB_HOST:localhost}
+#   Port: ${DB_PORT:3306}
+#   Username: ${DB_USER:root}
+#   Password: ${DB_PASSWORD:}
+#   Database: ${DB_NAME:idrm}

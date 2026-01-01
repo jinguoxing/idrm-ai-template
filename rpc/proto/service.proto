@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package service;
+option go_package = "./pb";
+
+// 通用请求
+message IdRequest {
+  int64 id = 1;
+}
+
+// 通用响应
+message Response {
+  int64 code = 1;
+  string message = 2;
+}
+
+// 示例服务定义
+// 实际使用时替换为业务接口
+service ExampleService {
+  // GetById 根据ID获取
+  rpc GetById(IdRequest) returns (Response);
+}

@@ -1,0 +1,24 @@
+Name: rpc
+Host: 0.0.0.0
+Port: 9999
+
+# 日志配置
+Log:
+  ServiceName: rpc
+  Mode: console
+  Level: info
+
+# 链路追踪
+Telemetry:
+  Name: rpc
+  Endpoint: ""
+  Sampler: 1.0
+  Batcher: jaeger
+
+# 数据库配置 (示例)
+# DB:
+#   Host: ${DB_HOST:localhost}
+#   Port: ${DB_PORT:3306}
+#   Username: ${DB_USER:root}
+#   Password: ${DB_PASSWORD:}
+#   Database: ${DB_NAME:idrm}

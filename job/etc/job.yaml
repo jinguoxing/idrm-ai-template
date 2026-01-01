@@ -1,0 +1,30 @@
+Name: job
+Mode: console
+
+# 日志配置
+Log:
+  ServiceName: job
+  Mode: console
+  Level: info
+
+# 链路追踪
+Telemetry:
+  Name: job
+  Endpoint: ""
+  Sampler: 1.0
+  Batcher: jaeger
+
+# 任务配置
+Job:
+  # 任务名称
+  Name: example-job
+  # 超时时间（秒）
+  Timeout: 300
+
+# 数据库配置 (示例)
+# DB:
+#   Host: ${DB_HOST:localhost}
+#   Port: ${DB_PORT:3306}
+#   Username: ${DB_USER:root}
+#   Password: ${DB_PASSWORD:}
+#   Database: ${DB_NAME:idrm}
