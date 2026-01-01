@@ -1,0 +1,50 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: true
+        type: choice
+        options:
+          - dev
+          - staging
+          - prod
+      tag:
+        description: 'Image tag to deploy'
+        required: true
+        default: 'latest'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.environment }}
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Helm
+        uses: azure/setup-helm@v3
+        with:
+          version: '3.13.0'
+      
+      - name: Configure kubeconfig
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBECONFIG }}" | base64 -d > ~/.kube/config
+      
+      - name: Deploy to ${{ github.event.inputs.environment }}
+        run: |
+          helm upgrade --install idrm ./deploy/helm/idrm \
+            --namespace ${{ github.event.inputs.environment }} \
+            --create-namespace \
+            -f ./deploy/helm/idrm/values-${{ github.event.inputs.environment }}.yaml \
+            --set global.image.tag=${{ github.event.inputs.tag }} \
+            --set secrets.mysql.password=${{ secrets.MYSQL_PASSWORD }} \
+            --wait \
+            --timeout 5m
+      
+      - name: Verify deployment
+        run: |
+          kubectl -n ${{ github.event.inputs.environment }} get pods
+          kubectl -n ${{ github.event.inputs.environment }} get svc

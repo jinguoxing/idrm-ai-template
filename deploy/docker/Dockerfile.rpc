@@ -1,0 +1,25 @@
+# 构建阶段
+FROM golang:1.21-alpine AS builder
+
+WORKDIR /build
+
+COPY go.mod go.sum ./
+RUN go mod download
+
+COPY . .
+
+RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o /app/rpc ./rpc/rpc.go
+
+# 运行阶段
+FROM alpine:3.19
+
+RUN apk add --no-cache ca-certificates tzdata
+
+WORKDIR /app
+
+COPY --from=builder /app/rpc .
+COPY --from=builder /build/rpc/etc ./etc
+
+EXPOSE 9999
+
+CMD ["./rpc", "-f", "etc/rpc.yaml"]

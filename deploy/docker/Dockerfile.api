@@ -1,0 +1,29 @@
+# 构建阶段
+FROM golang:1.21-alpine AS builder
+
+WORKDIR /build
+
+# 复制依赖文件
+COPY go.mod go.sum ./
+RUN go mod download
+
+# 复制源代码
+COPY . .
+
+# 编译
+RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o /app/api ./api/api.go
+
+# 运行阶段
+FROM alpine:3.19
+
+RUN apk add --no-cache ca-certificates tzdata
+
+WORKDIR /app
+
+# 从构建阶段复制
+COPY --from=builder /app/api .
+COPY --from=builder /build/api/etc ./etc
+
+EXPOSE 8888
+
+CMD ["./api", "-f", "etc/api.yaml"]

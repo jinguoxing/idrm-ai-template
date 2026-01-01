@@ -1,0 +1,23 @@
+# 开发环境配置
+
+global:
+  image:
+    tag: dev
+
+api:
+  replicas: 1
+  ingress:
+    host: api-dev.example.com
+  autoscaling:
+    enabled: false
+
+rpc:
+  replicas: 1
+
+consumer:
+  replicas: 1
+
+config:
+  mysql:
+    host: mysql-dev.default.svc
+    database: idrm_dev

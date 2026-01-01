@@ -1,0 +1,80 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ../..
+      dockerfile: deploy/docker/Dockerfile.api
+    ports:
+      - "8888:8888"
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASSWORD=${MYSQL_ROOT_PASSWORD:-root123}
+      - DB_NAME=${MYSQL_DATABASE:-idrm}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - mysql
+      - redis
+    restart: unless-stopped
+
+  rpc:
+    build:
+      context: ../..
+      dockerfile: deploy/docker/Dockerfile.rpc
+    ports:
+      - "9999:9999"
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+    depends_on:
+      - mysql
+      - redis
+    restart: unless-stopped
+
+  consumer:
+    build:
+      context: ../..
+      dockerfile: deploy/docker/Dockerfile.consumer
+    environment:
+      - KAFKA_BROKERS=${KAFKA_BROKERS:-kafka:9092}
+      - KAFKA_TOPIC=${KAFKA_TOPIC:-orders}
+      - KAFKA_GROUP=${KAFKA_GROUP:-consumer-group}
+    depends_on:
+      - kafka
+    restart: unless-stopped
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root123}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-idrm}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+
+  redis:
+    image: redis:7.0-alpine
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  kafka:
+    image: bitnami/kafka:3.6
+    ports:
+      - "9092:9092"
+    environment:
+      - KAFKA_CFG_NODE_ID=0
+      - KAFKA_CFG_PROCESS_ROLES=controller,broker
+      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,CONTROLLER://:9093
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      - KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=0@kafka:9093
+      - KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
+    restart: unless-stopped
+
+volumes:
+  mysql_data:

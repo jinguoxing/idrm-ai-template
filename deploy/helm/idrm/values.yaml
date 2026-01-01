@@ -1,0 +1,118 @@
+# 全局配置
+global:
+  image:
+    registry: ghcr.io
+    repository: myorg/idrm
+    tag: latest
+    pullPolicy: IfNotPresent
+  
+  # 服务名称前缀
+  namePrefix: idrm
+
+# API 服务
+api:
+  enabled: true
+  replicas: 2
+  
+  service:
+    type: ClusterIP
+    port: 8888
+  
+  ingress:
+    enabled: true
+    className: nginx
+    host: api.example.com
+    tls:
+      enabled: false
+      secretName: api-tls
+  
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+  
+  autoscaling:
+    enabled: true
+    minReplicas: 2
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 80
+  
+  env: []
+  # - name: DB_HOST
+  #   value: mysql.default.svc
+
+# RPC 服务
+rpc:
+  enabled: true
+  replicas: 2
+  
+  service:
+    type: ClusterIP
+    port: 9999
+  
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+  
+  env: []
+
+# Job 服务
+job:
+  enabled: true
+  schedule: "0 2 * * *"  # 每天凌晨 2 点
+  
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 500m
+      memory: 512Mi
+  
+  env: []
+
+# Consumer 服务
+consumer:
+  enabled: true
+  replicas: 1
+  
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: 300m
+      memory: 256Mi
+  
+  mq:
+    type: kafka
+    brokers: ["kafka:9092"]
+    topic: orders
+    group: consumer-group
+  
+  env: []
+
+# 通用配置
+config:
+  mysql:
+    host: mysql.default.svc
+    port: 3306
+    database: idrm
+    username: root
+    # 密码从 secret 读取
+  
+  redis:
+    host: redis.default.svc
+    port: 6379
+
+# Secrets (敏感信息)
+secrets:
+  mysql:
+    password: ""  # 部署时通过 --set 或 values-{env}.yaml 设置

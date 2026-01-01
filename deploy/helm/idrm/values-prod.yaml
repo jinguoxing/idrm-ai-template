@@ -1,0 +1,44 @@
+# 生产环境配置
+
+global:
+  image:
+    tag: v1.0.0
+
+api:
+  replicas: 3
+  ingress:
+    host: api.example.com
+    tls:
+      enabled: true
+  autoscaling:
+    enabled: true
+    minReplicas: 3
+    maxReplicas: 20
+  resources:
+    requests:
+      cpu: 200m
+      memory: 256Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+
+rpc:
+  replicas: 3
+  resources:
+    requests:
+      cpu: 200m
+      memory: 256Mi
+
+consumer:
+  replicas: 2
+
+job:
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+
+config:
+  mysql:
+    host: mysql-prod.default.svc
+    database: idrm
