@@ -192,6 +192,47 @@ Phase 4: Implement (实施验证)
 
 ---
 
+## 💡 设计理念
+
+### Spec-Kit 集成方式
+
+本模板提供 **两种使用方式**，灵活适配不同团队需求：
+
+| 方式 | 适用场景 | 优点 | 缺点 |
+|------|----------|------|------|
+| **方式 1: Spec-Kit CLI** | Cursor 用户，追求自动化 | 斜杠命令快速生成规范文档 | 需要安装 `specify-cli` |
+| **方式 2: 直接使用模板** | Claude Code 用户，灵活控制 | 无需安装，AI 直接理解 `.specify/` | 需手动引用模板路径 |
+
+### 核心设计原则
+
+```
+              Spec-Kit CLI 命令
+                     ↓
+                 读取并处理
+                     ↓
+        .specify/ 模板文件  ←  AI 也可直接读取
+                     ↓
+                指导开发流程
+```
+
+**关键特性**：
+1. ✅ **模板独立存在**：`.specify/` 中的 Markdown 文件是自包含的知识库
+2. ✅ **AI 原生支持**：Claude/Cursor 可以直接理解和应用这些模板
+3. ✅ **工具增强可选**：Spec-Kit CLI 是锦上添花，非必需
+4. ✅ **团队自主选择**：根据工具链自由选择使用方式
+
+### 实践建议
+
+- **Cursor 用户**：推荐安装 Spec-Kit CLI，使用 `/speckit.*` 命令
+- **Claude Code 用户**：直接引用模板文件，如 "请按照 `.specify/templates/requirements-template.md` 创建规范"
+- **混合团队**：两种方式产出的文档格式一致，可无缝协作
+
+详见：
+- [Claude Code 使用指南](doc/claude-code-guide.md#spec-kit-集成)
+- [Cursor + Spec-Kit 指导](doc/cursor-speckit-guide.md#使用方式对比)
+
+---
+
 ## 🐳 Docker 部署
 
 ### 本地开发环境
