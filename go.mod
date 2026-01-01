@@ -1,6 +1,6 @@
 module github.com/idrm/template
 
-go 1.23
+go 1.24
 
 require (
 	github.com/zeromicro/go-zero v1.9.0

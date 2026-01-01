@@ -3,7 +3,7 @@
 > Go-Zero 微服务项目模板，支持多服务类型与完整 DevOps 工作流
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Go Version](https://img.shields.io/badge/Go-1.23+-00ADD8?logo=go)](https://go.dev)
+[![Go Version](https://img.shields.io/badge/Go-1.24+-00ADD8?logo=go)](https://go.dev)
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker)](deploy/docker)
 [![Kubernetes](https://img.shields.io/badge/Kubernetes-Helm-326CE5?logo=kubernetes)](deploy/helm)
 
