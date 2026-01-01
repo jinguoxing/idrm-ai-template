@@ -19,16 +19,12 @@
 
 ### 方式 1: 使用 GitHub Template（推荐）
 
-> ⚠️ **当前状态**：此仓库暂未启用 GitHub Template 功能。请使用**方式 2（直接克隆）**或等待仓库管理员启用 Template 模式后再使用此方式。
-
 **优点**: 保留完整的 Git 历史，便于后续更新
-
-**启用 Template 模式后的使用步骤**：
 
 ```bash
 # 1. 在 GitHub 上使用模板创建新仓库
 #    访问：https://github.com/jinguoxing/idrm-ai-template
-#    点击 "Use this template" 按钮（绿色或蓝色）→ "Create a new repository"
+#    已登录用户会看到 "Use this template" 按钮（绿色）→ 点击 "Create a new repository"
 #    - Owner: 选择你的账号或组织
 #    - Repository name: my-project
 #    - 选择 Public/Private
@@ -53,25 +49,14 @@ git commit -m "chore: 初始化项目为 my-project"
 git push origin main
 ```
 
-> **说明**：GitHub Template 功能会将模板仓库的所有文件完整复制到你的新仓库中，所以克隆后即可使用 `scripts/init.sh` 脚本。
+> **说明**：
+> - GitHub Template 功能会将模板仓库的所有文件完整复制到你的新仓库中，所以克隆后即可使用 `scripts/init.sh` 脚本
+> - "Use this template" 按钮仅对已登录 GitHub 的用户显示
+> - 仓库已标记为 "Public template"
 
----
+### 方式 2: 直接克隆模板
 
-**如何为仓库管理员启用 Template 模式**：
-
-如果你是仓库所有者，可以通过以下步骤启用：
-1. 进入仓库的 **Settings** 页面
-2. 在 **General** 部分找到 **Template repository** 选项
-3. 勾选 **"Template repository"** 复选框
-4. 保存后，"Use this template" 按钮将显示在仓库首页
-
----
-
-### 方式 2: 直接克隆模板（当前推荐 ✅）
-
-**优点**: 简单快速，当前仓库可直接使用
-
-**当前最佳选择**：由于仓库暂未启用 Template 模式，这是目前最方便的方式。
+**优点**: 简单快速，适合不想在 GitHub 上操作的场景
 
 ```bash
 # 1. 克隆模板到本地（所有文件包括 scripts/init.sh 都会被下载）
