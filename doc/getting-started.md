@@ -22,51 +22,61 @@
 **优点**: 保留完整的 Git 历史，便于后续更新
 
 ```bash
-# 1. 在 GitHub 上点击 "Use this template" → "Create a new repository"
+# 1. 在 GitHub 上使用模板创建新仓库
+#    访问：https://github.com/jinguoxing/idrm-ai-template
+#    点击绿色按钮 "Use this template" → "Create a new repository"
+#    - Owner: 选择你的账号或组织
 #    - Repository name: my-project
 #    - 选择 Public/Private
+#    - 勾选 "Include all branches"（可选）
 #    - 点击 "Create repository"
 
-# 2. 克隆你的新仓库
+# 2. 克隆你新创建的仓库到本地
+#    GitHub 会自动复制模板的所有文件（包括 scripts/init.sh）
 git clone https://github.com/yourusername/my-project.git
 cd my-project
 
-# 3. 初始化项目（替换模块路径）
+# 3. 此时项目中已包含完整的模板文件，可以直接运行初始化脚本
+#    脚本会替换模块路径和项目名称
 ./scripts/init.sh github.com/yourusername/my-project
 
-# 或者选择需要的服务类型
+# 或选择需要的服务类型（例如：只保留 api 和 rpc）
 ./scripts/init.sh github.com/yourusername/my-project --services api,rpc --yes
 
-# 4. 提交初始化更改
+# 4. 提交初始化后的更改
 git add -A
-git commit -m "chore: 初始化项目"
+git commit -m "chore: 初始化项目为 my-project"
 git push origin main
 ```
 
+> **说明**：GitHub Template 功能会将模板仓库的所有文件完整复制到你的新仓库中，所以克隆后即可使用 `scripts/init.sh` 脚本。
+
 ### 方式 2: 直接克隆模板
 
-**优点**: 简单快速
+**优点**: 简单快速，适合不想在 GitHub 上操作的场景
 
 ```bash
-# 1. 克隆模板
+# 1. 克隆模板到本地（所有文件包括 scripts/init.sh 都会被下载）
 git clone https://github.com/jinguoxing/idrm-ai-template.git my-project
 cd my-project
 
-# 2. 移除模板的 Git 历史，创建自己的仓库
+# 2. 移除原模板的 Git 历史，初始化自己的仓库
 rm -rf .git
 git init
 git branch -M main
 
-# 3. 初始化项目
+# 3. 运行初始化脚本（脚本已在 scripts/ 目录中）
 ./scripts/init.sh github.com/yourusername/my-project
 
-# 4. 创建远程仓库并推送
-# 先在 GitHub 创建空仓库 my-project
+# 4. 先在 GitHub 上手动创建空仓库 my-project（不要初始化 README）
+#    然后关联并推送
 git add -A
 git commit -m "chore: 初始化项目"
 git remote add origin https://github.com/yourusername/my-project.git
 git push -u origin main
 ```
+
+> **说明**：这种方式会下载模板的完整副本，包括所有脚本和文件。
 
 ### 方式 3: 使用 goctl（Go-Zero 用户）
 
