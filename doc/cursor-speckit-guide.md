@@ -57,15 +57,17 @@ uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
 
 ### 3. 验证项目配置
 
-本模板已预配置 Spec-Kit，**无需重新初始化**！
+本模板已预配置 Spec-Kit，**开箱即用**！
+
+#### 检查配置
 
 ```bash
 # 克隆或使用模板后，检查是否已包含配置
 cd my-project
 ls -la .specify/
+ls -la .github/prompts/
 
-# 应该看到：
-# .specify/
+# .specify/ 应包含：
 # ├── memory/
 # │   └── constitution.md         # 项目原则
 # └── templates/
@@ -74,20 +76,29 @@ ls -la .specify/
 #     ├── tasks-template-v3.md     # 任务模板
 #     ├── api-template.api         # API 模板
 #     └── schema-template.sql      # 数据库模板
+
+# .github/prompts/ 应包含（斜杠命令定义）：
+# ├── constitution.prompt.md
+# ├── specify.prompt.md
+# ├── plan.prompt.md
+# ├── tasks.prompt.md
+# ├── implement.prompt.md
+# └── clarify.prompt.md
 ```
 
-> ⚠️ **重要提示**：
-> - 模板已包含完整的 `.specify/` 配置，**不要运行** `specify init`，会覆盖现有配置！
-> - 如果确实需要重新初始化（例如切换 AI），请先备份 `.specify/` 目录
-> - `specify check` 可以验证配置是否正确，这个命令是安全的
+> ✅ **好消息**：模板已包含 `.github/prompts/` 目录，**斜杠命令可直接使用**！
+>
+> - 无需运行 `specify init`
+> - 在 Cursor 中可直接使用 `/speckit.*` 命令
+> - 所有配置已预配置好
 
-**可选：安装 Spec-Kit CLI（仅当你想使用斜杠命令）**
+**可选：安装 Specify CLI 工具（用于命令行操作）**
 
 ```bash
-# 安装 Specify CLI 工具（可选）
+# 安装 Specify CLI 工具（可选，仅用于命令行）
 uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
 
-# 验证安装
+# 验证配置（不会修改文件）
 specify check
 ```
 
