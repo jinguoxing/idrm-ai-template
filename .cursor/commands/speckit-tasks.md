@@ -20,4 +20,5 @@ Break down development tasks based on technical design document.
 - Tests: unit tests, integration tests
 
 ## Output Format
-Use `.specify/templates/tasks-template-v3.md` template format
+Use `.specify/templates/tasks-template.md` template format
+
