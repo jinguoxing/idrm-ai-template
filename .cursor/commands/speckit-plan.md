@@ -24,3 +24,11 @@ Generate technical design documentation according to IDRM specifications.
 
 ## Output Format
 Use `.specify/templates/design-template.md` template format
+
+**Important**:
+- Replace `{{Feature Name}}` with the actual feature name
+- Replace `[YYYY-MM-DD format, use current date when generating this document]` with today's date
+- Replace `{{Author Name}}` with the appropriate author or leave as "AI Generated"
+- Include complete Mermaid diagrams for sequence flows
+- Provide both DDL and Go struct definitions
+

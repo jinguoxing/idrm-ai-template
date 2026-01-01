@@ -22,3 +22,9 @@ Break down development tasks based on technical design document.
 ## Output Format
 Use `.specify/templates/tasks-template.md` template format
 
+**Important**:
+- Replace `{{Feature Name}}` with the actual feature name
+- Replace `[YYYY-MM-DD format, use current date when generating this document]` with today's date
+- Replace `{{Author Name}}` with the appropriate author or leave as "AI Generated"
+- Ensure each task is < 50 lines of code
+- Include clear acceptance criteria for each task
