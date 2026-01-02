@@ -80,7 +80,7 @@ service project-api {
 ```bash
 # 步骤1：在 api/doc/api.api 中 import 新模块的 API 文件
 # 步骤2：执行 goctl（针对整个项目，不是单个功能）
-goctl api go -api api/doc/api.api -dir api/ --style=go_zero
+goctl api go -api api/doc/api.api -dir api/ --style=go_zero --type-group
 ```
 
 **生成文件**（可覆盖）：

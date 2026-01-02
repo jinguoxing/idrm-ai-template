@@ -44,7 +44,7 @@
 ```bash
 # 步骤1：在 api/doc/api.api 中 import 新模块
 # 步骤2：执行 goctl 生成代码（针对整个项目）
-goctl api go -api api/doc/api.api -dir api/ --style=go_zero
+goctl api go -api api/doc/api.api -dir api/ --style=go_zero --type-group
 ```
 
 ---
