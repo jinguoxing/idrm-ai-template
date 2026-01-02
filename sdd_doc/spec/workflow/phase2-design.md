@@ -75,8 +75,12 @@ service project-api {
 
 **goctl 自动生成**
 
+> ⚠️ **重要**：必须使用统一的 `api/doc/api.api` 入口文件执行 goctl，避免覆盖已有代码！
+
 ```bash
-goctl api go -api api/doc/{module}/{feature}.api -dir api/ --style=go_zero
+# 步骤1：在 api/doc/api.api 中 import 新模块的 API 文件
+# 步骤2：执行 goctl（针对整个项目，不是单个功能）
+goctl api go -api api/doc/api.api -dir api/ --style=go_zero
 ```
 
 **生成文件**（可覆盖）：

@@ -33,14 +33,18 @@
 | Step | 任务 | 方式 | 产出 |
 |------|------|------|------|
 | 1 | 定义 API 文件 | AI 实现 | `api/doc/{module}/{feature}.api` |
-| 2 | 生成 Handler/Types | goctl | `api/internal/handler/`, `types/` |
-| 3 | 定义 DDL 文件 | AI 实现 | `migrations/{module}/{table}.sql` |
-| 4 | 实现 Model 接口 | AI 实现 | `model/{module}/{feature}/` |
+| 2 | 生成 Handler/Types | goctl<generated> | `api/internal/handler/`, `types/` |
+| 3 | 定义 DDL 文件 | AI 手写 | `migrations/{module}/{table}.sql` |
+| 4 | 实现 Model 接口 | AI 手写 | `model/{module}/{feature}/` |
 | 5 | 实现 Logic 层 | AI 实现 | `api/internal/logic/` |
+
+> ⚠️ **重要**：goctl 必须在 `api/doc/api.api` 入口文件上执行，不能针对单个功能文件！
 
 **goctl 命令**:
 ```bash
-goctl api go -api api/doc/{module}/{feature}.api -dir api/ --style=go_zero --type-group
+# 步骤1：在 api/doc/api.api 中 import 新模块
+# 步骤2：执行 goctl 生成代码（针对整个项目）
+goctl api go -api api/doc/api.api -dir api/ --style=go_zero
 ```
 
 ---
