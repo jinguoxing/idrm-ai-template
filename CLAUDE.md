@@ -222,7 +222,7 @@ cd api && go run xxx.go
 cd rpc/resource_catalog && go run resource_catalog.go
 
 # Code generation
-goctl api go -api api/doc/api.api -dir api/
+goctl api go -api api/doc/api.api -dir api/ --style=go_zero --type-group
 goctl rpc protoc rpc/xxx/xxx.proto --go_out=. --go-grpc_out=. --zrpc_out=.
 
 # Testing

@@ -75,7 +75,7 @@ model/{module}/{table}/
 
 ```bash
 # 使用 go_zero 风格生成（下划线分隔）
-goctl api go -api api/doc/api.api -dir api/ --style=go_zero
+goctl api go -api api/doc/api.api -dir api/ --style=go_zero --type-group
 ```
 
 详见：[API服务指南](./api-service-guide.md)

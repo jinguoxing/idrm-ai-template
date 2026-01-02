@@ -454,7 +454,7 @@ type CategoryModel interface {
 **活动**：
 1. **生成代码框架**
    ```bash
-   goctl api go -api api/doc/api.api -dir api/ --style=go_zero
+   goctl api go -api api/doc/api.api -dir api/ --style=go_zero --type-group
    ```
 
 2. **实现业务逻辑**

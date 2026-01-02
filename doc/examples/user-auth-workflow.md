@@ -585,7 +585,7 @@ const (
 - [ ] T003 运行 goctl 生成代码
   ```bash
   # 在 api/doc/api.api 中 import user.api
-  goctl api go -api api/doc/api.api -dir api/ --style=go_zero
+  goctl api go -api api/doc/api.api -dir api/ --style=go_zero --type-group
   ```
 
 ### Step 3: 创建工具包
