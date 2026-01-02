@@ -200,5 +200,6 @@
 ## 参考文档
 
 - [场景化使用方案](./README.md)
-- [Cursor 使用指南](./cursor-guide.md)
-- [Claude Code 使用指南](./claude-code-guide.md)
+- [Cursor 使用指南](../cursor-speckit-guide.md)
+- [Claude Code 使用指南](../claude-code-guide.md)
+

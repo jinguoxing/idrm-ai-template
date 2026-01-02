@@ -195,6 +195,7 @@ Phase 4: Implement (实施验证)
 **AI 辅助工具支持**：
 - [Claude Code 开发指导](doc/claude-code-guide.md)
 - [Cursor + Spec-Kit 指导](doc/cursor-speckit-guide.md)
+- [场景化使用方案](doc/scenarios/README.md) - 4 种开发场景快速选择
 - [用户认证示例](doc/examples/user-auth-workflow.md)
 
 ---
