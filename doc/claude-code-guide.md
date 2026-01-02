@@ -163,7 +163,41 @@ ls -la .specify/
 | `/speckit.tasks` | Phase 3: Tasks | `tasks.md` |
 | `/speckit.implement` | Phase 4: Implement | 代码实现 |
 
-> **提示**: Spec-Kit 命令与 IDRM 5 阶段工作流完全一致，可混合使用。已有的模板文件（`.specify/templates/`）可与 Spec-Kit 斜杠命令配合使用。
+> **提示**: Spec-Kit 命令与 IDRM 5 阶段工作流完全一致，可混合使用。
+
+#### 🆕 场景化命令（推荐）
+
+根据开发场景选择合适的命令，获得更精准的工作流指导：
+
+| 命令 | 场景 | 适用条件 |
+|------|------|----------|
+| `/speckit.scenario.new` | 新功能 | 从零开始，完整5阶段流程 |
+| `/speckit.scenario.update` | 小改动 | Bug修复，< 50行代码 |
+| `/speckit.scenario.extend` | 功能扩展 | 在已有功能上添加新特性 |
+| `/speckit.scenario.refactor` | 重构 | 大规模变更，涉及接口调整 |
+
+**Claude Code 支持两种模式**：
+
+1. **命令模式**（`.claude/commands/`）
+   ```
+   /speckit.scenario.new
+   ```
+
+2. **Prompt 模式**（`.github/prompts/`）
+   ```
+   使用 scenario-new.prompt.md 开发新功能
+   ```
+
+**场景选择决策**：
+
+```
+不存在 specs/{feature}/ 目录？  → /speckit.scenario.new
+变更 < 50 行，不涉及新接口？   → /speckit.scenario.update
+添加新功能，保持兼容？         → /speckit.scenario.extend
+涉及破坏性变更？               → /speckit.scenario.refactor
+```
+
+详细场景说明：`.specify/workflows/README.md`
 
 #### 使用方式对比：Spec-Kit CLI vs 直接使用模板
 
