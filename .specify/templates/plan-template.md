@@ -32,10 +32,10 @@
 
 | Step | 任务 | 方式 | 产出 |
 |------|------|------|------|
-| 1 | 定义 API 文件 | AI 手写 | `api/doc/{module}/{feature}.api` |
+| 1 | 定义 API 文件 | AI 实现 | `api/doc/{module}/{feature}.api` |
 | 2 | 生成 Handler/Types | goctl | `api/internal/handler/`, `types/` |
-| 3 | 定义 DDL 文件 | AI 手写 | `migrations/{module}/{table}.sql` |
-| 4 | 实现 Model 接口 | AI 手写 | `model/{module}/{feature}/` |
+| 3 | 定义 DDL 文件 | AI 实现 | `migrations/{module}/{table}.sql` |
+| 4 | 实现 Model 接口 | AI 实现 | `model/{module}/{feature}/` |
 | 5 | 实现 Logic 层 | AI 实现 | `api/internal/logic/` |
 
 **goctl 命令**:
@@ -51,12 +51,12 @@ goctl api go -api api/doc/{module}/{feature}.api -dir api/ --style=go_zero --typ
 
 | 序号 | 文件 | 生成方式 | 位置 |
 |------|------|----------|------|
-| 1 | API 文件 | AI 手写 | `api/doc/{module}/{feature}.api` |
-| 2 | DDL 文件 | AI 手写 | `migrations/{module}/{table}.sql` |
+| 1 | API 文件 | AI 实现 | `api/doc/{module}/{feature}.api` |
+| 2 | DDL 文件 | AI 实现 | `migrations/{module}/{table}.sql` |
 | 3 | Handler | goctl 生成 | `api/internal/handler/{module}/` |
 | 4 | Types | goctl 生成 | `api/internal/types/` |
 | 5 | Logic | AI 实现 | `api/internal/logic/{module}/` |
-| 6 | Model | AI 手写 | `model/{module}/{feature}/` |
+| 6 | Model | AI 实现 | `model/{module}/{feature}/` |
 
 ### 代码结构
 

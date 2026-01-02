@@ -26,10 +26,10 @@
 按以下顺序设计和生成：
 
 ```
-Step 1: 定义 API 文件 (.api)     → AI 手写
+Step 1: 定义 API 文件 (.api)     → AI 实现
 Step 2: 生成 Handler/Types       → goctl api go
-Step 3: 定义 DDL 文件 (.sql)     → AI 手写
-Step 4: 引用 Model 接口          → AI 手写
+Step 3: 定义 DDL 文件 (.sql)     → AI 实现
+Step 4: 引用 Model 接口          → AI 实现
 Step 5: 实现 Logic 层            → Phase 4 实施
 ```
 
@@ -37,7 +37,7 @@ Step 5: 实现 Logic 层            → Phase 4 实施
 
 ## Step 1: API 文件定义
 
-**AI 手写** | **位置**: `api/doc/{module}/{feature}.api`
+**AI 实现** | **位置**: `api/doc/{module}/{feature}.api`
 
 ```api
 syntax = "v1"
@@ -91,7 +91,7 @@ goctl api go -api api/doc/{module}/{feature}.api -dir api/ --style=go_zero
 
 ## Step 3: DDL 文件定义
 
-**AI 手写** | **位置**: `migrations/{module}/{table}.sql`
+**AI 实现** | **位置**: `migrations/{module}/{table}.sql`
 
 ```sql
 CREATE TABLE `{table}` (
@@ -109,7 +109,7 @@ CREATE TABLE `{table}` (
 
 ## Step 4: Model 接口引用
 
-**AI 手写** | **位置**: `model/{module}/{table}/`
+**AI 实现** | **位置**: `model/{module}/{table}/`
 
 Model 层采用双 ORM 模式，需手动定义接口：
 
@@ -131,12 +131,12 @@ type Model interface {
 
 | 序号 | 文件 | 生成方式 | 位置 |
 |------|------|----------|------|
-| 1 | 设计文档 | AI 手写 | `specs/{feature}/plan.md` |
-| 2 | API 文件 | AI 手写 | `api/doc/{module}/{feature}.api` |
-| 3 | DDL 文件 | AI 手写 | `migrations/{module}/{table}.sql` |
+| 1 | 设计文档 | AI 实现 | `specs/{feature}/plan.md` |
+| 2 | API 文件 | AI 实现 | `api/doc/{module}/{feature}.api` |
+| 3 | DDL 文件 | AI 实现 | `migrations/{module}/{table}.sql` |
 | 4 | Handler | goctl 生成 | `api/internal/handler/{module}/` |
 | 5 | Types | goctl 生成 | `api/internal/types/` |
-| 6 | Model | AI 手写 | `model/{module}/{table}/` |
+| 6 | Model | AI 实现 | `model/{module}/{table}/` |
 
 ---
 
